@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import DashboardContent from "../components/DashboardContent";
+import DataSiswaContent from "@/components/DataSiswaContent";
+import ProfilContent from "@/components/ProfilContent";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -35,21 +37,17 @@ export default function Home() {
           search={search}
           setSearch={setSearch}
           title={activeMenu}
-          onToggleSidebar={() =>
-            setSidebarOpen(!sidebarOpen)
-          }
+          showSearch={activeMenu !== "Pengaturan"}
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         />
 
-        {activeMenu === "Dashboard" ? (
-          <DashboardContent search={search} />
-        ) : (
-          <Box className="dashboard-content">
-            <h2>{activeMenu}</h2>
-            <p>
-              Halaman {activeMenu} belum tersedia.
-            </p>
-          </Box>
-        )}
+        <Box className="dashboard-content">
+          {activeMenu === "Dashboard" && <DashboardContent search={search} />}
+
+          {activeMenu === "Data Siswa" && <DataSiswaContent />}
+
+          {activeMenu === "Pengaturan" && <ProfilContent />}
+        </Box>
       </Box>
     </Box>
   );
