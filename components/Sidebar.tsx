@@ -12,7 +12,6 @@ import {
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
-import SchoolIcon from "@mui/icons-material/School";
 
 type SidebarProps = {
   open: boolean;
@@ -44,11 +43,17 @@ export default function Sidebar({
     <Box className={`sidebar ${open ? "sidebar-open" : ""}`}>
       <Box className="sidebar-logo">
         <Box className="sidebar-logo-icon">
-          <SchoolIcon />
+          <img
+            src="/images/logo-telkom.png"
+            alt="Logo Telkom Schools"
+            width={45}
+            height={45}
+            style={{ objectFit: "contain" }}
+          />
         </Box>
 
         <Typography variant="h6">
-          SiswaKu
+          Student
         </Typography>
       </Box>
 
