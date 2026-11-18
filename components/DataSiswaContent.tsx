@@ -90,8 +90,6 @@ export default function DataSiswaContent() {
                             Total {filteredStudents.length} siswa ditemukan
                         </Typography>
                     </Box>
-
-                    {/* SEARCH */}
                     <TextField
                         size="small"
                         placeholder="Cari nama, NIS, atau kelas..."
@@ -117,8 +115,6 @@ export default function DataSiswaContent() {
                         }}
                     />
                 </Box>
-
-                {/* TABLE */}
                 <TableContainer>
                     <Table>
                         <TableHead>

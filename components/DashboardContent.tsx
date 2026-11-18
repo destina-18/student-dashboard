@@ -17,7 +17,6 @@ type DashboardContentProps = {
 };
 
 export default function DashboardContent({ search }: DashboardContentProps) {
-  // STATISTIK SISWA
   const totalStudents = students.length;
 
   const maleStudents = students.filter(

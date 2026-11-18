@@ -222,7 +222,6 @@ export default function ProfileContent() {
                 flexWrap: "wrap",
               }}
             >
-              {/* AVATAR */}
               <Box sx={{ position: "relative" }}>
                 <Avatar
                   sx={{

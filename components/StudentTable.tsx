@@ -38,8 +38,6 @@ export default function StudentTable({
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
-
-  // Mengganti halaman tabel
   const handleChangePage = (
     event: MouseEvent<HTMLButtonElement> | null,
     newPage: number
@@ -47,7 +45,6 @@ export default function StudentTable({
     setPage(newPage);
   };
 
-  // Mengubah jumlah baris tabel
   const handleChangeRowsPerPage = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -55,14 +52,12 @@ export default function StudentTable({
     setPage(0);
   };
 
-  // Tombol tambah siswa
   const handleAddStudent = () => {
     alert("Fitur tambah siswa belum menggunakan backend.");
   };
 
   return (
     <Card className="student-card">
-      {/* HEADER TABEL */}
       <Box className="table-title">
         <Box>
           <Typography sx={{ fontWeight: 700 }}>
@@ -87,8 +82,6 @@ export default function StudentTable({
           Tambah Siswa
         </Button>
       </Box>
-
-      {/* TABEL DATA */}
       <TableContainer>
         <Table size="small">
           <TableHead>
@@ -157,8 +150,6 @@ export default function StudentTable({
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* PAGINATION */}
       <TablePagination
         component="div"
         count={students.length}
