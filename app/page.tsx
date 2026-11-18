@@ -39,6 +39,7 @@ export default function Home() {
           title={activeMenu}
           showSearch={activeMenu !== "Pengaturan"}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+          onMenuChange={setActiveMenu}
         />
 
         <Box className="dashboard-content">

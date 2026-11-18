@@ -22,7 +22,6 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { students } from "../data/student";
 
-// WARNA CHIP STATUS
 const statusStyle = {
     Aktif: { bg: "#e5f6e9", color: "#25813c" },
     Cuti: { bg: "#fff4e0", color: "#b26a00" },
@@ -33,8 +32,6 @@ export default function DataSiswaContent() {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(6);
-
-    // FILTER DATA SISWA
     const filteredStudents = useMemo(() => {
         const keyword = search.toLowerCase().trim();
 
@@ -49,7 +46,6 @@ export default function DataSiswaContent() {
         });
     }, [search]);
 
-    // PAGINATION
     const displayedStudents = filteredStudents.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
@@ -57,7 +53,6 @@ export default function DataSiswaContent() {
 
     return (
         <Box className="data-siswa-content">
-            {/* HEADER */}
             <Box sx={{ mb: 3 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700 }}>
                     Data Siswa
@@ -68,7 +63,6 @@ export default function DataSiswaContent() {
                 </Typography>
             </Box>
 
-            {/* TABEL SISWA */}
             <Paper
                 elevation={0}
                 sx={{
@@ -77,7 +71,6 @@ export default function DataSiswaContent() {
                     border: "1px solid #eeeeee",
                 }}
             >
-                {/* HEADER TABEL */}
                 <Box
                     sx={{
                         display: "flex",
@@ -193,8 +186,6 @@ export default function DataSiswaContent() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-
-                {/* PAGINATION */}
                 <TablePagination
                     component="div"
                     count={filteredStudents.length}

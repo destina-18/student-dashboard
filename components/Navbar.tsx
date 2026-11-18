@@ -17,6 +17,7 @@ type NavbarProps = {
   search: string;
   setSearch: (value: string) => void;
   onToggleSidebar: () => void;
+  onMenuChange: (menu: string) => void;
   title: string;
   showSearch?: boolean;
 };
@@ -25,6 +26,7 @@ export default function Navbar({
   search,
   setSearch,
   onToggleSidebar,
+  onMenuChange,
   title,
   showSearch = true,
 }: NavbarProps) {
@@ -62,7 +64,11 @@ export default function Navbar({
           <NotificationsNoneIcon />
         </IconButton>
 
-        <Box className="navbar-profile">
+        <Box
+          className="navbar-profile"
+          onClick={() => onMenuChange("Pengaturan")}
+          sx={{ cursor: "pointer" }}
+        >
           <Avatar className="profile-avatar">A</Avatar>
 
           <Box className="profile-text">

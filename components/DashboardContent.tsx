@@ -30,7 +30,6 @@ export default function DashboardContent({ search }: DashboardContentProps) {
 
   const totalClasses = new Set(students.map((student) => student.class)).size;
 
-  // PENCARIAN DATA SISWA
   const keyword = search.toLowerCase().trim();
 
   const filteredStudents = students.filter((student) => {
@@ -41,7 +40,6 @@ export default function DashboardContent({ search }: DashboardContentProps) {
     );
   });
 
-  // DATA JUMLAH SISWA PER KELAS
   const classData = Array.from(
     new Set(students.map((student) => student.class))
   ).map((className) => ({
@@ -53,7 +51,6 @@ export default function DashboardContent({ search }: DashboardContentProps) {
 
   return (
     <Box className="dashboard-content">
-      {/* JUDUL DASHBOARD */}
       <Box className="dashboard-heading">
         <Typography variant="h5">Dashboard</Typography>
 
@@ -61,8 +58,6 @@ export default function DashboardContent({ search }: DashboardContentProps) {
           Selamat datang! Berikut ringkasan data siswa sekolah.
         </Typography>
       </Box>
-
-      {/* STATISTIK */}
       <Box className="stats-container">
         <StatCard
           title="Total Siswa"
@@ -89,12 +84,8 @@ export default function DashboardContent({ search }: DashboardContentProps) {
         />
       </Box>
 
-      {/* TABEL DAN INFORMASI KELAS */}
       <Box className="dashboard-grid">
-        {/* TABEL SISWA */}
         <StudentTable students={filteredStudents} />
-
-        {/* INFORMASI SISWA PER KELAS */}
         <Card className="class-card">
           <Typography sx={{ fontWeight: 700 }}>Siswa per Kelas</Typography>
 
@@ -123,7 +114,6 @@ export default function DashboardContent({ search }: DashboardContentProps) {
             ))}
           </Box>
 
-          {/* TOTAL SISWA */}
           <Box className="class-total">
             <Typography variant="caption" color="text.secondary">
               Total seluruh siswa

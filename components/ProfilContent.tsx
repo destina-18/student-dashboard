@@ -11,7 +11,6 @@ import {
   Divider,
   Grid,
   IconButton,
-  InputAdornment,
   MenuItem,
   Paper,
   Snackbar,
@@ -24,13 +23,10 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
 import SaveIcon from "@mui/icons-material/Save";
 import SchoolIcon from "@mui/icons-material/School";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 const PRIMARY = "#b71c1c";
@@ -117,25 +113,17 @@ function InfoRow({
 
 export default function ProfileContent() {
   const [profile, setProfile] = useState({
-    nama: "Rizky Ananda Putra, S.Pd",
+    nama: "Destina Amelia Sari, S.Pd",
     nip: "198905122015011003",
     jabatan: "Administrator Sekolah",
     email: "admin@siswaku.com",
     telepon: "0812-3456-7890",
-    tanggalLahir: "1989-05-12",
-    jenisKelamin: "Laki-laki",
+    tanggalLahir: "2008-12-18",
+    jenisKelamin: "Perempuan",
     alamat: "Jl. Danau Ranau No. 12, Sawojajar, Kota Malang, Jawa Timur",
     bio: "Mengelola data siswa, kelas, dan administrasi sekolah agar tetap rapi dan mudah diakses.",
     username: "admin_siswaku",
   });
-
-  const [password, setPassword] = useState({
-    lama: "",
-    baru: "",
-    konfirmasi: "",
-  });
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -152,48 +140,12 @@ export default function ProfileContent() {
     });
   };
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword({
-      ...password,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmitProfile = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setSnackbar({
       open: true,
       message: "Profil berhasil diperbarui!",
-      severity: "success",
-    });
-  };
-
-  const handleSubmitPassword = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (password.baru.length < 6) {
-      setSnackbar({
-        open: true,
-        message: "Password baru minimal 6 karakter.",
-        severity: "error",
-      });
-      return;
-    }
-
-    if (password.baru !== password.konfirmasi) {
-      setSnackbar({
-        open: true,
-        message: "Konfirmasi password tidak sama.",
-        severity: "error",
-      });
-      return;
-    }
-
-    setPassword({ lama: "", baru: "", konfirmasi: "" });
-    setSnackbar({
-      open: true,
-      message: "Password berhasil diganti!",
       severity: "success",
     });
   };
@@ -223,7 +175,6 @@ export default function ProfileContent() {
           Kelola informasi akun dan profil pengguna.
         </Typography>
       </Box>
-
       <Paper
         elevation={0}
         sx={{
@@ -257,7 +208,7 @@ export default function ProfileContent() {
             sx={{
               display: "flex",
               flexDirection: { xs: "column", sm: "row" },
-              alignItems: { xs: "flex-start", sm: "flex-end" },
+              alignItems: { xs: "flex-start", sm: "flex-start" },
               justifyContent: "space-between",
               gap: 2,
               mt: { xs: -5, sm: -6 },
@@ -266,11 +217,12 @@ export default function ProfileContent() {
             <Box
               sx={{
                 display: "flex",
-                alignItems: "flex-end",
+                alignItems: "flex-start",
                 gap: 2.5,
                 flexWrap: "wrap",
               }}
             >
+              {/* AVATAR */}
               <Box sx={{ position: "relative" }}>
                 <Avatar
                   sx={{
@@ -298,7 +250,8 @@ export default function ProfileContent() {
                   <CameraAltIcon sx={{ fontSize: 16, color: PRIMARY }} />
                 </IconButton>
               </Box>
-              <Box sx={{ pb: 0.5 }}>
+
+              <Box sx={{ pt: { xs: 0, sm: 7 } }}>
                 <Box
                   sx={{
                     display: "flex",
@@ -340,6 +293,7 @@ export default function ProfileContent() {
               </Box>
             </Box>
           </Box>
+
           <Box
             sx={{
               display: "grid",
@@ -367,6 +321,7 @@ export default function ProfileContent() {
           </Box>
         </Box>
       </Paper>
+
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, md: 4 }}>
           <Paper elevation={0} sx={cardSx}>
@@ -583,103 +538,10 @@ export default function ProfileContent() {
                 </Box>
               </Box>
             </Paper>
-            <Paper elevation={0} sx={cardSx}>
-              <SectionTitle
-                title="Keamanan"
-                subtitle="Ganti password secara berkala agar akun tetap aman"
-              />
-
-              <Box component="form" onSubmit={handleSubmitPassword}>
-                <Grid container spacing={2.5}>
-                  <Grid size={{ xs: 12 }}>
-                    <TextField
-                      fullWidth
-                      label="Password Lama"
-                      name="lama"
-                      type={showPassword ? "text" : "password"}
-                      value={password.lama}
-                      onChange={handlePasswordChange}
-                      required
-                      slotProps={{
-                        input: {
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <LockIcon fontSize="small" />
-                            </InputAdornment>
-                          ),
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton
-                                size="small"
-                                onClick={() => setShowPassword(!showPassword)}
-                              >
-                                {showPassword ? (
-                                  <VisibilityOff fontSize="small" />
-                                ) : (
-                                  <Visibility fontSize="small" />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        },
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <TextField
-                      fullWidth
-                      label="Password Baru"
-                      name="baru"
-                      type={showPassword ? "text" : "password"}
-                      value={password.baru}
-                      onChange={handlePasswordChange}
-                      required
-                    />
-                  </Grid>
-
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <TextField
-                      fullWidth
-                      label="Konfirmasi Password"
-                      name="konfirmasi"
-                      type={showPassword ? "text" : "password"}
-                      value={password.konfirmasi}
-                      onChange={handlePasswordChange}
-                      required
-                    />
-                  </Grid>
-                </Grid>
-
-                <Box
-                  sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}
-                >
-                  <Button
-                    type="submit"
-                    variant="outlined"
-                    startIcon={<LockIcon />}
-                    sx={{
-                      borderColor: PRIMARY,
-                      color: PRIMARY,
-                      borderRadius: 2,
-                      px: 3,
-                      py: 1.2,
-                      textTransform: "none",
-                      fontWeight: 600,
-                      "&:hover": {
-                        borderColor: PRIMARY_DARK,
-                        backgroundColor: "#fff5f5",
-                      },
-                    }}
-                  >
-                    Ganti Password
-                  </Button>
-                </Box>
-              </Box>
-            </Paper>
           </Box>
         </Grid>
       </Grid>
+
       <Snackbar
         open={snackbar.open}
         autoHideDuration={3000}
