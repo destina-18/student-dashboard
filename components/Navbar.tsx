@@ -28,6 +28,7 @@ export default function Navbar({
         <IconButton
           onClick={onToggleSidebar}
           className="menu-toggle"
+          aria-label="Buka menu"
         >
           <MenuIcon />
         </IconButton>
@@ -52,7 +53,7 @@ export default function Navbar({
           </Avatar>
 
           <Box className="profile-text">
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption">
               Admin Sekolah
             </Typography>
           </Box>

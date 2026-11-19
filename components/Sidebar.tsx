@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -25,18 +26,9 @@ export default function Sidebar({
   onMenuChange,
 }: SidebarProps) {
   const menus = [
-    {
-      name: "Dashboard",
-      icon: <DashboardIcon />,
-    },
-    {
-      name: "Data Siswa",
-      icon: <PeopleIcon />,
-    },
-    {
-      name: "Pengaturan",
-      icon: <SettingsIcon />,
-    },
+    { name: "Dashboard", icon: <DashboardIcon /> },
+    { name: "Data Siswa", icon: <PeopleIcon /> },
+    { name: "Pengaturan", icon: <SettingsIcon /> },
   ];
 
   return (
