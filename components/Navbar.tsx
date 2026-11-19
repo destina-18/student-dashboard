@@ -1,65 +1,43 @@
+
 "use client";
 
 import {
   Box,
   Typography,
-  TextField,
-  InputAdornment,
   IconButton,
   Avatar,
 } from "@mui/material";
 
-import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 type NavbarProps = {
-  search: string;
-  setSearch: (value: string) => void;
   onToggleSidebar: () => void;
   onMenuChange: (menu: string) => void;
   title: string;
-  showSearch?: boolean;
 };
 
 export default function Navbar({
-  search,
-  setSearch,
   onToggleSidebar,
   onMenuChange,
   title,
-  showSearch = true,
 }: NavbarProps) {
   return (
     <Box className="navbar">
       <Box className="navbar-left">
-        <IconButton onClick={onToggleSidebar} className="menu-toggle">
+        <IconButton
+          onClick={onToggleSidebar}
+          className="menu-toggle"
+        >
           <MenuIcon />
         </IconButton>
 
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6">
+          {title}
+        </Typography>
       </Box>
 
       <Box className="navbar-right">
-        {showSearch && (
-          <TextField
-            size="small"
-            placeholder="Cari nama atau NIS..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="navbar-search"
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-              },
-            }}
-          />
-        )}
-
         <IconButton className="notification-button">
           <NotificationsNoneIcon />
         </IconButton>
@@ -69,7 +47,9 @@ export default function Navbar({
           onClick={() => onMenuChange("Pengaturan")}
           sx={{ cursor: "pointer" }}
         >
-          <Avatar className="profile-avatar">A</Avatar>
+          <Avatar className="profile-avatar">
+            A
+          </Avatar>
 
           <Box className="profile-text">
             <Typography variant="caption" color="text.secondary">
