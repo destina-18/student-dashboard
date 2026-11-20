@@ -58,7 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 25px 18px;
-  background: #f4ebe4;
+  background: #eeeae7;
   color: var(--text-main);
   border-right: 1px solid var(--border);
 }
