@@ -35,7 +35,6 @@ export default function DataSiswaContent() {
   const [selectedStatus, setSelectedStatus] =
     useState<StatusFilter>("Semua");
 
-  // Pilihan kelas diambil dari data siswa
   const classOptions = useMemo(() => {
     return [...new Set(studentList.map((student) => student.class))].sort();
   }, [studentList]);
@@ -62,17 +61,17 @@ export default function DataSiswaContent() {
     });
   }, [studentList, search, selectedClass, selectedStatus]);
 
-  // Tambah siswa dengan validasi NISN
+  // validasi NISN
   const handleAddStudent = (newStudent: Omit<Student, "id">) => {
     const nisn = newStudent.nis.trim();
 
-    // NISN wajib diisi
+    // wajib diisi
     if (!nisn) {
       alert("NISN wajib diisi!");
       return;
     }
 
-    // NISN hanya boleh angka
+    // hanya boleh angka
     if (!/^\d+$/.test(nisn)) {
       alert("NISN hanya boleh berisi angka!");
       return;

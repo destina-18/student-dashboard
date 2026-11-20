@@ -27,7 +27,7 @@ import StatCard from "./StatCard";
 
 import { students } from "../data/student";
 
-// Urutan tingkat supaya kelas tampil X -> XI -> XII
+// Urutan tingkat 
 const GRADE_ORDER: Record<string, number> = {
   X: 1,
   XI: 2,
@@ -44,7 +44,6 @@ const sortClass = (a: string, b: string) => {
   return diff !== 0 ? diff : sectionA.localeCompare(sectionB);
 };
 
-// Donut gender
 const CIRCUMFERENCE = 2 * Math.PI * 40;
 
 const statusStyle = {
