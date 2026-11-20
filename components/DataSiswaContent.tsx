@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo, useState } from "react";
@@ -61,23 +62,77 @@ export default function DataSiswaContent() {
     });
   }, [studentList, search, selectedClass, selectedStatus]);
 
-  // Tambah siswa
+  // Tambah siswa dengan validasi NISN
   const handleAddStudent = (newStudent: Omit<Student, "id">) => {
+    const nisn = newStudent.nis.trim();
+
+    // NISN wajib diisi
+    if (!nisn) {
+      alert("NISN wajib diisi!");
+      return;
+    }
+
+    // NISN hanya boleh angka
+    if (!/^\d+$/.test(nisn)) {
+      alert("NISN hanya boleh berisi angka!");
+      return;
+    }
+
+    // Cek NISN duplikat
+    const isNisnExist = studentList.some(
+      (student) => student.nis.trim() === nisn
+    );
+
+    if (isNisnExist) {
+      alert("NISN sudah terdaftar! Gunakan NISN lain.");
+      return;
+    }
+
+    // Simpan siswa baru
     setStudentList((prev) => {
       const nextId =
         prev.length > 0
           ? Math.max(...prev.map((student) => student.id)) + 1
           : 1;
 
-      return [{ ...newStudent, id: nextId }, ...prev];
+      return [
+        { ...newStudent, nis: nisn, id: nextId },
+        ...prev,
+      ];
     });
   };
 
   // Edit siswa
   const handleUpdateStudent = (updatedStudent: Student) => {
+    const nisn = updatedStudent.nis.trim();
+
+    if (!nisn) {
+      alert("NISN wajib diisi!");
+      return;
+    }
+
+    if (!/^\d+$/.test(nisn)) {
+      alert("NISN hanya boleh berisi angka!");
+      return;
+    }
+
+    // Cek duplikat, kecuali data siswa yang sedang diedit
+    const isNisnExist = studentList.some(
+      (student) =>
+        student.nis.trim() === nisn &&
+        student.id !== updatedStudent.id
+    );
+
+    if (isNisnExist) {
+      alert("NISN sudah digunakan oleh siswa lain!");
+      return;
+    }
+
     setStudentList((prev) =>
       prev.map((student) =>
-        student.id === updatedStudent.id ? updatedStudent : student
+        student.id === updatedStudent.id
+          ? { ...updatedStudent, nis: nisn }
+          : student
       )
     );
   };
@@ -124,7 +179,7 @@ export default function DataSiswaContent() {
       >
         <TextField
           size="small"
-          placeholder="Cari nama, NIS, atau kelas..."
+          placeholder="Cari nama, NISN, atau kelas..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           sx={{
@@ -219,7 +274,7 @@ export default function DataSiswaContent() {
         onDeleteStudent={handleDeleteStudent}
       />
 
-      {/* Jumlah data yang sedang ditampilkan */}
+      {/* Jumlah data yang ditampilkan */}
       <Typography
         variant="caption"
         sx={{
